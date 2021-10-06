@@ -28,7 +28,7 @@ abstract public class MediaFile implements Serializable {
         this.name = name;
     }
 
-    public String toString(){
+    public String toString() {
         return "{'name': '" + this.name + "', 'duration': '" + this.duration + "'}";
     }
 }
