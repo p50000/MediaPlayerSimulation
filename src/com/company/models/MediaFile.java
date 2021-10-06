@@ -1,8 +1,9 @@
-package com.company.model;
+package com.company.models;
 
+import java.io.Serializable;
 import java.time.Duration;
 
-abstract public class MediaFile {
+abstract public class MediaFile implements Serializable {
     private Duration duration;
     private String name;
 
@@ -25,5 +26,9 @@ abstract public class MediaFile {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String toString(){
+        return "{'name': '" + this.name + "', 'duration': '" + this.duration + "'}";
     }
 }

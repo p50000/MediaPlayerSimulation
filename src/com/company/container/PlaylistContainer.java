@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class PlaylistContainer {
     private ArrayList<Playlist> playlist;
 
-    public void fetchPlaylist(){
+    public void Save(){
 
     }
 }
