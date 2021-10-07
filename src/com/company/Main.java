@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.container.MediaContainer;
+import com.company.models.MediaFile;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -18,6 +19,12 @@ public class Main {
         Duration duration = Duration.ofSeconds(33);
         MediaPlayerApplication player = MediaPlayerApplication.getInstance();
 
+        List<MediaFile> AvailableMusic = player.getAllMedia();
+
+        for(int i = 0;i < AvailableMusic.size();i++){
+            MediaFile temp = AvailableMusic.get(i);
+            System.out.printf("Name: %s, duration: %s, id: %d, format: %s\n", temp.getName(), formatDuration(temp.getDuration()), temp.getId(), temp.getFormat().toString());
+        }
         player.createPlaylist(List.of(0, 2));
         player.playPlaylist(0);
         System.out.printf("Now playing: %s\n", player.getCurrentMedia().getName()); // Now playing: Rick Astley - Never Gonna Give You Up
@@ -36,6 +43,11 @@ public class Main {
         System.out.printf("Now playing: %s\n", player.getCurrentMedia().getName()); // Now playing: Sunday Best
         player.forward(Duration.ofSeconds(81921830));
         System.out.printf("Now playing: %s\n", player.getCurrentMedia().getName()); // Now playing: Rick Astley - Never Gonna Give You Up
-        System.out.printf("Moment playing: %s\n", formatDuration(player.getCurrentMoment()));
+        System.out.printf("Moment playing: %s\n", formatDuration(player.getCurrentMoment())); // Moment playing: 0:00:00
+
+        player.switchBackward();
+        System.out.printf("Now playing: %s\n", player.getCurrentMedia().getName()); // Now playing: Sunday Best
+        System.out.printf("Moment playing: %s\n", formatDuration(player.getCurrentMoment())); // Moment playing: 0:00:00
+
     }
 }
