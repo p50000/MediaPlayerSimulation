@@ -17,144 +17,228 @@ public class Main {
         return String.format("%d:%02d:%02d", s / 3600, (s % 3600) / 60, (s % 60));
     }
 
-    public static void showPlaylists(){
+    public static void showPlaylists() {
         List<Playlist> playlists = MediaPlayerApplication.getInstance().getAllPlaylists();
         System.out.println("Number of PlayLists (" + playlists.size() + ") : ");
-        for(int i=1;i<=playlists.size();i++){
-            System.out.println(i + ") " + playlists.get(i).getName() + " (Size :" + playlists.get(i).size() + ")");
+        for (int i = 1; i <= playlists.size(); i++) {
+            System.out.println(i + ") " + playlists.get(i - 1).getName() + " (Size :" + playlists.get(i - 1).size() + ")");
         }
     }
 
-    public static void showCurrentMoment(){
+    public static void showMedia() {
+        List<MediaFile> playlists = MediaPlayerApplication.getInstance().getAllMedia();
+        System.out.println("Number of Media (" + playlists.size() + ") : ");
+        for (int i = 1; i <= playlists.size(); i++) {
+            System.out.println(i + ") " + playlists.get(i - 1).getName() + " (" + playlists.get(i - 1).getDuration() + ")");
+        }
+    }
+
+    public static void showCurrentMoment() {
         System.out.println("Time Moment : " + formatDuration(MediaPlayerApplication.getInstance().getCurrentMoment()));
     }
 
-    public static void showCurrentPlaylist(){
+    public static void showCurrentPlaylist() {
         Playlist playlist = MediaPlayerApplication.getInstance().getCurrentPlaylist();
+        if (playlist == null) {
+            System.out.println("No playing playlist");
+            return;
+        }
         System.out.println(playlist.getName() + " (Size :" + playlist.size() + ") : ");
-        for(int i=1;i<=playlist.size();i++){
-            System.out.println(i + ") " + playlist.get(i).getName() + " " + playlist.get(i).getDuration() + " ");
+        for (int i = 1; i <= playlist.size(); i++) {
+            System.out.println(i + ") " + playlist.get(i - 1).getName() + " " + playlist.get(i - 1).getDuration() + " ");
         }
     }
 
-    public static void showCurrentMedia(){
+    public static void showCurrentMedia() {
         MediaFile file = MediaPlayerApplication.getInstance().getCurrentMedia();
+        if (file == null) {
+            System.out.println("No playing media");
+            return;
+        }
         System.out.println(file.getName() + " " + file.getDuration() + " ");
     }
 
-    public static void showMediaById(int id){
-        MediaFile file = MediaPlayerApplication.getInstance().getAllMedia().get(id);
+    public static void showMediaById(int id) {
+        if (MediaPlayerApplication.getInstance().getAllMedia().size() < id) {
+            System.out.println("No media by id " + id);
+            return;
+        }
+        MediaFile file = MediaPlayerApplication.getInstance().getAllMedia().get(id - 1);
         System.out.println(file.getName() + " " + file.getDuration() + " ");
     }
 
-    public static void showPlaylistById(int id){
-        Playlist playlist = MediaPlayerApplication.getInstance().getAllPlaylists().get(id);
+    public static void showPlaylistById(int id) {
+        if (MediaPlayerApplication.getInstance().getAllPlaylists().size() < id) {
+            System.out.println("No playlist by id " + id);
+            return;
+        }
+        Playlist playlist = MediaPlayerApplication.getInstance().getAllPlaylists().get(id - 1);
         System.out.println(playlist.getName() + " (Size :" + playlist.size() + ") : ");
-        for(int i=1;i<=playlist.size();i++){
-            System.out.println(i + ") " + playlist.get(i).getName() + " " + playlist.get(i).getDuration() + " ");
+        for (int i = 1; i <= playlist.size(); i++) {
+            System.out.println(i + ") " + playlist.get(i - 1).getName() + " " + playlist.get(i - 1).getDuration() + " ");
         }
     }
 
-    public static void forward(Duration time){
+    public static void forward(Duration time) {
         MediaPlayerApplication.getInstance().forward(time);
         showCurrentMoment();
     }
 
-    public static void back(Duration time){
+    public static void back(Duration time) {
         MediaPlayerApplication.getInstance().back(time);
         showCurrentMoment();
     }
-    public static void switchForward(){
+
+    public static void switchForward() {
         MediaPlayerApplication.getInstance().switchForward();
         showCurrentMedia();
     }
-    public static void switchBackward(){
+
+    public static void switchBackward() {
         MediaPlayerApplication.getInstance().switchBackward();
         showCurrentMedia();
     }
-    public static void playMediaById(int id){
-        MediaPlayerApplication.getInstance().playMediaFile(id);
+
+    public static void playMediaById(int id) {
+        if (MediaPlayerApplication.getInstance().getAllMedia().size() < id) {
+            System.out.println("No media by id " + id);
+            return;
+        }
+        MediaPlayerApplication.getInstance().playMediaFile(id - 1);
         showCurrentMedia();
     }
-    public static void playPlaylistById(int id){
-        MediaPlayerApplication.getInstance().playPlaylist(id);
+
+    public static void playPlaylistById(int id) {
+        if (MediaPlayerApplication.getInstance().getAllPlaylists().size() < id) {
+            System.out.println("No playlist by id " + id);
+            return;
+        }
+        MediaPlayerApplication.getInstance().playPlaylist(id - 1);
         showCurrentMedia();
         Playlist playlist = MediaPlayerApplication.getInstance().getCurrentPlaylist();
-        System.out.println(playlist.getName() + " (Size :" + playlist.size() + ") : ");
+        System.out.println("Playlist : " + playlist.getName() + " (Size :" + playlist.size() + ")");
     }
-    public static void sortSongs(Scanner input){
+
+    public static void sortSongs(Scanner input) {
 
     }
-    public static void createPlaylist(String playListName){
+
+    public static void createPlaylist(String playListName) {
         ArrayList<Integer> mediaIds = new ArrayList<>();
         MediaPlayerApplication.getInstance().createPlaylist(playListName, mediaIds);
         System.out.println("PlayList " + playListName + " created.");
     }
-    public static void createMedia(Scanner input){
+
+    public static void createMedia(Scanner input) {
         System.out.print("Types (1 - Audio, 2 - Video) : ");
         int type = input.nextInt();
+        input.nextLine();
         System.out.print("New Media name : ");
         String mediaName = input.nextLine();
         System.out.print("New Media Duration in seconds : ");
         Duration duration = Duration.ofSeconds(input.nextLong());
+        input.nextLine();
         int id = MediaPlayerApplication.getInstance().getAllMedia().size();
-        if(type == 1){
+        if (type == 1) {
             Audio mediaFile = new Audio(duration, mediaName, id);
             MediaPlayerApplication.getInstance().createMedia(mediaFile);
             System.out.println("Audio file created");
-        }else{
+        } else {
             Video mediaFile = new Video(duration, mediaName, id);
             MediaPlayerApplication.getInstance().createMedia(mediaFile);
             System.out.println("Video file created");
         }
     }
-    public static void addMediaToPlaylist(){}
+
+    public static void addMediaToPlaylist(Scanner input) {
+        System.out.print("Media Id : ");
+        int mediaId = input.nextInt();
+        input.nextLine();
+        System.out.print("Playlist Id : ");
+        int playlistId = input.nextInt();
+        input.nextLine();
+        if (MediaPlayerApplication.getInstance().getAllMedia().size() < mediaId) {
+            System.out.println("No media by id " + mediaId);
+            return;
+        }
+        if (MediaPlayerApplication.getInstance().getAllPlaylists().size() < playlistId) {
+            System.out.println("No media by id " + playlistId);
+            return;
+        }
+        MediaPlayerApplication.getInstance().addMediaToAPlaylist(playlistId - 1, mediaId - 1);
+        System.out.println("Media file added to playlist");
+    }
 
     public static void main(String[] args) {
         Duration duration = Duration.ofSeconds(33);
-        Scanner input= new Scanner(System.in);    //System.in is a standard input stream
-        System.out.print("Enter first number- ");
-        while(true){
-            switch (input.nextLine()){
+        Scanner input = new Scanner(System.in);    //System.in is a standard input stream
+        while (true) {
+            switch (input.nextLine()) {
                 case "exit":
                     return;
+                case "showMedia":
+                    showMedia();
+                    break;
                 case "showPlaylists":
                     showPlaylists();
+                    break;
                 case "showCurrentMoment":
                     showCurrentMoment();
+                    break;
                 case "showCurrentPlaylist":
                     showCurrentPlaylist();
-                case "show_current_media":
+                    break;
+                case "showCurrentMedia":
                     showCurrentMedia();
+                    break;
                 case "showMediaById":
                     System.out.print("Id : ");
                     showMediaById(input.nextInt());
+                    input.nextLine();
+                    break;
                 case "showPlaylistById":
                     System.out.print("Id : ");
                     showPlaylistById(input.nextInt());
+                    input.nextLine();
+                    break;
                 case "forward":
                     System.out.print("Seconds : ");
                     forward(Duration.ofSeconds(input.nextInt()));
+                    input.nextLine();
+                    break;
                 case "back":
                     System.out.print("Seconds : ");
                     back(Duration.ofSeconds(input.nextInt()));
-                case "switch_forward":
+                    input.nextLine();
+                    break;
+                case "switchForward":
                     switchForward();
+                    break;
                 case "switchBackward":
                     switchBackward();
-                case "play_media_by_id":
+                    break;
+                case "playMediaById":
                     System.out.print("Id : ");
                     playMediaById(input.nextInt());
+                    input.nextLine();
+                    break;
                 case "playPlaylistById":
                     System.out.print("Id : ");
                     playPlaylistById(input.nextInt());
+                    input.nextLine();
+                    break;
                 case "sortSongs":
                     sortSongs(input);
                 case "createPlaylist":
                     System.out.print("New Playlist Name : ");
                     createPlaylist(input.nextLine());
+                    break;
                 case "createMedia":
-                    createPlaylist(input);
+                    createMedia(input);
+                    break;
+                case "addMediaToPlaylist":
+                    addMediaToPlaylist(input);
+                    break;
             }
         }
     }
