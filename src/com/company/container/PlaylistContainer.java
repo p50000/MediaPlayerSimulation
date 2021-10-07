@@ -8,8 +8,8 @@ import java.util.ArrayList;
 public class PlaylistContainer {
     private ArrayList<Playlist> playlists;
 
-    public void Save() {
-
+    public PlaylistContainer() {
+        fetchPlaylistsFromSystem();
     }
 
     public ArrayList<Playlist> getPlaylists() {
@@ -17,8 +17,15 @@ public class PlaylistContainer {
     }
 
     public void addPlayList(ArrayList<MediaFile> mediaFiles){
-        Playlist playlist = new Playlist();
-        playlist.createPlaylist(mediaFiles);
+        Playlist playlist = new Playlist(mediaFiles);
         playlists.add(playlist);
+    }
+
+    private void fetchPlaylistsFromSystem() {
+
+    }
+
+    public void Save() {
+
     }
 }

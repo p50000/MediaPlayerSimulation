@@ -7,11 +7,14 @@ import java.util.ArrayList;
 public class MediaContainer {
     private ArrayList<MediaFile> media;
 
-    public void fetchMediaFromSystem(){
-
+    public MediaContainer() {
+        fetchMediaFromSystem();
     }
 
     public ArrayList<MediaFile> getMedia() {
         return media;
+    }
+
+    public void fetchMediaFromSystem(){
     }
 }

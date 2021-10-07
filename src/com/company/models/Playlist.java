@@ -3,6 +3,7 @@ package com.company.models;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Playlist implements Serializable {
     private String playlistName;
@@ -32,7 +33,7 @@ public class Playlist implements Serializable {
         this.mediaContent = new ArrayList<MediaFile>();
     }
 
-    public void createPlaylist(ArrayList<MediaFile> tracks) {
+    public Playlist(ArrayList<MediaFile> tracks) {
         this.mediaContent = tracks;
     }
 
@@ -40,7 +41,7 @@ public class Playlist implements Serializable {
         mediaContent.add(track);
     }
 
-    public void sortSongs(ArrayList<Integer> orderedMediaIds) {
+    public void sortSongs(List<Integer> orderedMediaIds) {
         ArrayList<MediaFile> newMediaContent = new ArrayList<MediaFile>();
         for (Integer orderedMediaId : orderedMediaIds) {
             newMediaContent.add(this.mediaContent.get(orderedMediaId));
@@ -51,6 +52,7 @@ public class Playlist implements Serializable {
     public int size(){
         return mediaContent.size();
     }
+
     public MediaFile get(int id){
         return mediaContent.get(id);
     }

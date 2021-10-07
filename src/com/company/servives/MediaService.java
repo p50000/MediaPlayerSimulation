@@ -6,15 +6,21 @@ import com.company.models.MediaFile;
 import com.company.models.Playlist;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MediaService {
     private PlaylistContainer playlistContainer;
     private MediaContainer mediaContainer;
 
+    public MediaService() {
+        playlistContainer = new PlaylistContainer();
+    }
+
     public ArrayList<MediaFile> getAllMedia(){
         return mediaContainer.getMedia();
     }
-    public ArrayList<MediaFile> getMediaByIds(ArrayList<Integer> mediaIds){
+
+    public ArrayList<MediaFile> getMediaByIds(List<Integer> mediaIds){
         ArrayList<MediaFile> result = new ArrayList<>();
         ArrayList<MediaFile> temp = getAllMedia();
         for(Integer id: mediaIds){
@@ -22,23 +28,29 @@ public class MediaService {
         }
         return result;
     }
+
     public ArrayList<Playlist> getAllPlayLists(){
         return playlistContainer.getPlaylists();
     }
-    public void sortSongs(int playListId, ArrayList<Integer> orderedMediaIds){
+
+    public Playlist getPlaylistById(int playlistId) {
+        return playlistContainer.getPlaylists().get(playlistId);
+    }
+
+    public void sortSongs(int playListId, List<Integer> orderedMediaIds){
         Playlist playlist = getAllPlayLists().get(playListId);
         playlist.sortSongs(orderedMediaIds);
     }
-    public void createPlayList(ArrayList<Integer> mediaIds){
+
+    public void createPlayList(List<Integer> mediaIds){
         ArrayList<MediaFile> mediaFiles = getMediaByIds(mediaIds);
         playlistContainer.addPlayList(mediaFiles);
     }
-    public void addSongToPlaylist(int playlistId, int mediaId){
+
+    public void addMediaToPlaylist(int playlistId, int mediaId){
         getAllPlayLists().get(playlistId).addSong(getAllMedia().get(mediaId));
     }
-    public Playlist getPlaylistForPlaying(int mediaId){
-        Playlist playlist = new Playlist();
-        playlist.addSong(getAllMedia().get(mediaId));
-        return playlist;
+    public Playlist getPlaylistForPlaying(List<Integer> mediaId){
+        return new Playlist(getMediaByIds(mediaId));
     }
 }
