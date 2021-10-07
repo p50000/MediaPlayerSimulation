@@ -13,24 +13,25 @@ public class MediaService {
     private PlaylistContainer playlistContainer;
     private MediaContainer mediaContainer;
 
-    public MediaService(MediaPlayerApplication.key key) {
-        playlistContainer = new PlaylistContainer();
+    public MediaService(MediaPlayerApplication.key key) throws Exception {
+        playlistContainer = new PlaylistContainer(key);
+        mediaContainer = new MediaContainer(key);
     }
 
-    public ArrayList<MediaFile> getAllMedia(){
+    public ArrayList<MediaFile> getAllMedia() {
         return mediaContainer.getMedia();
     }
 
-    public ArrayList<MediaFile> getMediaByIds(List<Integer> mediaIds){
+    public ArrayList<MediaFile> getMediaByIds(List<Integer> mediaIds) {
         ArrayList<MediaFile> result = new ArrayList<>();
         ArrayList<MediaFile> temp = getAllMedia();
-        for(Integer id: mediaIds){
+        for (Integer id : mediaIds) {
             result.add(temp.get(id));
         }
         return result;
     }
 
-    public ArrayList<Playlist> getAllPlayLists(){
+    public ArrayList<Playlist> getAllPlayLists() {
         return playlistContainer.getPlaylists();
     }
 
@@ -38,20 +39,21 @@ public class MediaService {
         return playlistContainer.getPlaylists().get(playlistId);
     }
 
-    public void sortSongs(int playListId, List<Integer> orderedMediaIds){
+    public void sortSongs(int playListId, List<Integer> orderedMediaIds) {
         Playlist playlist = getAllPlayLists().get(playListId);
         playlist.sortSongs(orderedMediaIds);
     }
 
-    public void createPlayList(List<Integer> mediaIds){
+    public void createPlayList(List<Integer> mediaIds) {
         ArrayList<MediaFile> mediaFiles = getMediaByIds(mediaIds);
         playlistContainer.addPlayList(mediaFiles);
     }
 
-    public void addMediaToPlaylist(int playlistId, int mediaId){
+    public void addMediaToPlaylist(int playlistId, int mediaId) {
         getAllPlayLists().get(playlistId).addSong(getAllMedia().get(mediaId));
     }
-    public Playlist getPlaylistForPlaying(List<Integer> mediaId){
+
+    public Playlist getPlaylistForPlaying(List<Integer> mediaId) {
         return new Playlist(getMediaByIds(mediaId));
     }
 }
