@@ -170,7 +170,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Duration duration = Duration.ofSeconds(33);
         Scanner input = new Scanner(System.in);    //System.in is a standard input stream
         while (true) {
             switch (input.nextLine()) {
