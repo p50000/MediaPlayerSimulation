@@ -21,8 +21,8 @@ public class PlaylistContainer {
         return playlists;
     }
 
-    public void addPlayList(ArrayList<MediaFile> mediaFiles){
-        Playlist playlist = new Playlist(mediaFiles);
+    public void addPlayList(String playlistName, ArrayList<MediaFile> mediaFiles){
+        Playlist playlist = new Playlist(playlistName, mediaFiles);
         playlists.add(playlist);
         save();
     }

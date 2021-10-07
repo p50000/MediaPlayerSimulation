@@ -33,7 +33,8 @@ public class Playlist implements Serializable {
         this.mediaContent = new ArrayList<MediaFile>();
     }
 
-    public Playlist(ArrayList<MediaFile> tracks) {
+    public Playlist(String name, ArrayList<MediaFile> tracks) {
+        this.playlistName = name;
         this.mediaContent = tracks;
     }
 

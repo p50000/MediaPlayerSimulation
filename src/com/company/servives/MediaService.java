@@ -39,14 +39,14 @@ public class MediaService {
         return playlistContainer.getPlaylists().get(playlistId);
     }
 
-    public void sortSongs(int playListId, List<Integer> orderedMediaIds) {
+    public void sortMedia(int playListId, List<Integer> orderedMediaIds) {
         Playlist playlist = getAllPlayLists().get(playListId);
         playlist.sortSongs(orderedMediaIds);
     }
 
-    public void createPlayList(List<Integer> mediaIds) {
+    public void createPlayList(String playlistName, List<Integer> mediaIds) {
         ArrayList<MediaFile> mediaFiles = getMediaByIds(mediaIds);
-        playlistContainer.addPlayList(mediaFiles);
+        playlistContainer.addPlayList(playlistName, mediaFiles);
         playlistContainer.save();
     }
 
@@ -55,6 +55,6 @@ public class MediaService {
     }
 
     public Playlist getPlaylistForPlaying(List<Integer> mediaId) {
-        return new Playlist(getMediaByIds(mediaId));
+        return new Playlist("Currently playing", getMediaByIds(mediaId));
     }
 }

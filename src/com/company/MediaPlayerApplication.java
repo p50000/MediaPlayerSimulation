@@ -48,11 +48,11 @@ public class MediaPlayerApplication {
     }
 
     public void sortSongs(int playlistId, List<Integer> orderedMediaIds) {
-        mediaService.sortSongs(playlistId, orderedMediaIds);
+        mediaService.sortMedia(playlistId, orderedMediaIds);
     }
 
-    public void createPlaylist(List<Integer> mediaIds) {
-        mediaService.createPlayList(mediaIds);
+    public void createPlaylist(String playlistName, List<Integer> mediaIds) {
+        mediaService.createPlayList(playlistName, mediaIds);
     }
 
     public void addMediaToAPlaylist(int playlistId, int mediaId) {
