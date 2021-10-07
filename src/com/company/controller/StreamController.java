@@ -24,7 +24,7 @@ public class StreamController {
 
     private StreamController() {}
 
-    public StreamController(MediaPlayerApplication.key any) throws Exception {
+    public StreamController(MediaPlayerApplication.key any) {
         if (any == null) return;
         currentMoment = Duration.ZERO;
         streamState = IDLE;
@@ -78,7 +78,7 @@ public class StreamController {
         if(timeLeft.compareTo(time) < 0) {
             return switchForward();
         }
-        currentMoment = currentMoment.plus(time);;
+        currentMoment = currentMoment.plus(time);
         return true;
     }
 

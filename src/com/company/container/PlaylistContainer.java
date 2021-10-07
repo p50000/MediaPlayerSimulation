@@ -27,7 +27,7 @@ public class PlaylistContainer {
 
     }
 
-    public void Save() {
-
+    public void save() {
+        //dummy function where we supposedly save all the current playlist data so it would not be lost
     }
 }

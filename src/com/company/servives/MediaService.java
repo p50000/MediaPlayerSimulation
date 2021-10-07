@@ -47,6 +47,7 @@ public class MediaService {
     public void createPlayList(List<Integer> mediaIds) {
         ArrayList<MediaFile> mediaFiles = getMediaByIds(mediaIds);
         playlistContainer.addPlayList(mediaFiles);
+        playlistContainer.save();
     }
 
     public void addMediaToPlaylist(int playlistId, int mediaId) {

@@ -26,6 +26,11 @@ public class MediaContainer {
     public void fetchMediaFromSystem(){
         //here we load media data from user's system. for now it's simulated by creating media objects
         media.add(new Audio(Duration.ofMinutes(3), "Rick Astley - Never Gonna Give You Up", 0));
-
+        media.add(new Audio(Duration.ofMinutes(6), "Blinding Lights", 1));
+        media.add(new Audio(Duration.ofMinutes(2), "You should be sad", 2));
+        media.add(new Audio(Duration.ofMinutes(3), "Imported", 3));
+        media.add(new Audio(Duration.ofMinutes(1), "Slide", 4));
+        media.add(new Audio(Duration.ofMinutes(2), "Sunday Best", 5));
+        media.add(new Audio(Duration.ofMinutes(7), "Maniac", 6));
     }
 }
