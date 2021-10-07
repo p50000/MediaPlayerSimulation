@@ -91,4 +91,8 @@ public class MediaPlayerApplication {
     public boolean switchBackward() {
         return streamController.switchBackward();
     }
+
+    public Playlist getCurrentPlaylist(){
+        return streamController.getCurrentPlaylist();
+    }
 }
