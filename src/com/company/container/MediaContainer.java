@@ -3,6 +3,7 @@ package com.company.container;
 import com.company.MediaPlayerApplication;
 import com.company.models.Audio;
 import com.company.models.MediaFile;
+import com.company.models.Video;
 
 import javax.xml.datatype.DatatypeFactory;
 import java.time.Duration;
@@ -32,5 +33,7 @@ public class MediaContainer {
         media.add(new Audio(Duration.ofMinutes(1), "Slide", 4));
         media.add(new Audio(Duration.ofMinutes(2), "Sunday Best", 5));
         media.add(new Audio(Duration.ofMinutes(7), "Maniac", 6));
+        media.add(new Video(Duration.ofHours(2), "Harry Potter", 7));
+        media.add(new Video(Duration.ofMinutes(10), "Best Cat Memes Ever", 8));
     }
 }

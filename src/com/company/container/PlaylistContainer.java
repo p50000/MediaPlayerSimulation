@@ -24,6 +24,7 @@ public class PlaylistContainer {
     public void addPlayList(ArrayList<MediaFile> mediaFiles){
         Playlist playlist = new Playlist(mediaFiles);
         playlists.add(playlist);
+        save();
     }
 
     private void fetchPlaylistsFromSystem() {

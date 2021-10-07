@@ -44,6 +44,7 @@ public class StreamController {
         if (streamState == IDLE) return false;
         if (mediaId + 1 < currentPlaylist.size()) {
             currentMediaFile = currentPlaylist.get(++mediaId);
+            currentMoment = Duration.ZERO;
             return true;
         }
         currentPlaylist = null;
@@ -58,7 +59,7 @@ public class StreamController {
         if (streamState == IDLE) return false;
         if (mediaId > 0) {
             currentMediaFile = currentPlaylist.get(--mediaId);
-            mediaId--;
+            currentMoment = Duration.ZERO;
             return true;
         }
         currentPlaylist = null;
@@ -83,7 +84,6 @@ public class StreamController {
         if (streamState == IDLE) return false;
         if (currentMoment.compareTo(time) < 0) {
             time = currentMoment;
-            return true;
         }
         currentMoment = currentMoment.minus(time);
         return true;
