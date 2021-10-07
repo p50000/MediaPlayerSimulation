@@ -17,7 +17,11 @@ public class MediaPlayerApplication {
 
     MediaService mediaService;
 
-    public static class key { private key() {} }
+    public static class key {
+        private key() {
+        }
+    }
+
     private static final key Key = new key();
 
     private MediaPlayerApplication() {
@@ -30,7 +34,7 @@ public class MediaPlayerApplication {
         }
     }
 
-    public static MediaPlayerApplication getInstance(){
+    public static MediaPlayerApplication getInstance() {
         if (instance == null) instance = new MediaPlayerApplication();
         return instance;
     }
@@ -72,4 +76,19 @@ public class MediaPlayerApplication {
         return streamController.getCurrentMoment();
     }
 
+    public boolean forward(Duration time) {
+        return streamController.forward(time);
+    }
+
+    public boolean back(Duration time) {
+        return streamController.back(time);
+    }
+
+    public boolean switchForward() {
+        return streamController.switchForward();
+    }
+
+    public boolean switchBackward() {
+        return streamController.switchBackward();
+    }
 }
