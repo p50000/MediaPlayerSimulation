@@ -13,16 +13,13 @@ import static com.company.enums.StreamState.PLAYING;
 public class StreamController {
 
     private Playlist currentPlaylist;
-
     private MediaFile currentMediaFile;
-
     private StreamState streamState;
-
     private int mediaId;
-
     private Duration currentMoment;
 
-    private StreamController() {}
+    private StreamController() {
+    }
 
     public StreamController(MediaPlayerApplication.key any) {
         if (any == null) return;
@@ -44,7 +41,7 @@ public class StreamController {
     }
 
     public boolean switchForward() {
-        if(streamState == IDLE) return false;
+        if (streamState == IDLE) return false;
         if (mediaId + 1 < currentPlaylist.size()) {
             currentMediaFile = currentPlaylist.get(++mediaId);
             return true;
@@ -58,7 +55,7 @@ public class StreamController {
     }
 
     public boolean switchBackward() {
-        if(streamState == IDLE) return false;
+        if (streamState == IDLE) return false;
         if (mediaId > 0) {
             currentMediaFile = currentPlaylist.get(--mediaId);
             mediaId--;
@@ -73,9 +70,9 @@ public class StreamController {
     }
 
     public boolean forward(Duration time) {
-        if(streamState == IDLE) return false;
+        if (streamState == IDLE) return false;
         Duration timeLeft = currentMediaFile.getDuration().minus(currentMoment);
-        if(timeLeft.compareTo(time) < 0) {
+        if (timeLeft.compareTo(time) < 0) {
             return switchForward();
         }
         currentMoment = currentMoment.plus(time);
@@ -83,8 +80,8 @@ public class StreamController {
     }
 
     public boolean back(Duration time) {
-        if(streamState == IDLE) return false;
-        if(currentMoment.compareTo(time) < 0) {
+        if (streamState == IDLE) return false;
+        if (currentMoment.compareTo(time) < 0) {
             time = currentMoment;
             return true;
         }

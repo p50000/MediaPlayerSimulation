@@ -10,7 +10,10 @@ public class PlaylistContainer {
     private ArrayList<Playlist> playlists;
 
     public PlaylistContainer(MediaPlayerApplication.key any) throws Exception {
-        if(any == null) throw new Exception();
+        if(any == null) {
+            throw new Exception();
+        }
+        playlists = new ArrayList<>();
         fetchPlaylistsFromSystem();
     }
 
@@ -24,7 +27,7 @@ public class PlaylistContainer {
     }
 
     private void fetchPlaylistsFromSystem() {
-
+        //here we upload playlists saved by user - for now dummy function
     }
 
     public void save() {

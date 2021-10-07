@@ -5,11 +5,11 @@ import com.company.enums.MediaFormat;
 import java.io.Serializable;
 import java.time.Duration;
 
-abstract public class MediaFile implements Serializable {
+public abstract class MediaFile implements Serializable {
     private Duration duration;
     private String name;
     private int id;
-    private MediaFormat format;
+    private final MediaFormat format;
 
     public MediaFile(Duration duration, String name, int id, MediaFormat format) {
         this.duration = duration;

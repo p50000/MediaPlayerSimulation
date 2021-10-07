@@ -49,11 +49,11 @@ public class Playlist implements Serializable {
         this.mediaContent = newMediaContent;
     }
 
-    public int size(){
+    public int size() {
         return mediaContent.size();
     }
 
-    public MediaFile get(int id){
+    public MediaFile get(int id) {
         return mediaContent.get(id);
     }
 }
