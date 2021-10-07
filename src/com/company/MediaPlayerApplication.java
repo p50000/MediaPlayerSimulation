@@ -11,21 +11,27 @@ import java.util.List;
 
 public class MediaPlayerApplication {
 
-    MediaPlayerApplication instance;
+    static MediaPlayerApplication instance;
 
     StreamController streamController;
 
     MediaService mediaService;
 
+    public static class key { private key() {} }
+    private static final key Key = new key();
+
     private MediaPlayerApplication() {
-        streamController = new StreamController();
-        mediaService = new MediaService();
+        try {
+            streamController = new StreamController(Key);
+            mediaService = new MediaService(Key);
+        } catch (Exception exception) {
+            streamController = null;
+            mediaService = null;
+        }
     }
 
-    public MediaPlayerApplication getInstance() {
-        if (instance == null){
-            instance = new MediaPlayerApplication();
-        }
+    public static MediaPlayerApplication getInstance(){
+        if (instance == null) instance = new MediaPlayerApplication();
         return instance;
     }
 

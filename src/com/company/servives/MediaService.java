@@ -1,5 +1,6 @@
 package com.company.servives;
 
+import com.company.MediaPlayerApplication;
 import com.company.container.MediaContainer;
 import com.company.container.PlaylistContainer;
 import com.company.models.MediaFile;
@@ -12,7 +13,7 @@ public class MediaService {
     private PlaylistContainer playlistContainer;
     private MediaContainer mediaContainer;
 
-    public MediaService() {
+    public MediaService(MediaPlayerApplication.key key) {
         playlistContainer = new PlaylistContainer();
     }
 

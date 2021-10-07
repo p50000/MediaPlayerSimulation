@@ -1,5 +1,6 @@
 package com.company.controller;
 
+import com.company.MediaPlayerApplication;
 import com.company.enums.StreamState;
 import com.company.models.MediaFile;
 import com.company.models.Playlist;
@@ -21,7 +22,10 @@ public class StreamController {
 
     private Duration currentMoment;
 
-    public StreamController() {
+    private StreamController() {}
+
+    public StreamController(MediaPlayerApplication.key any) throws Exception {
+        if (any == null) return;
         currentMoment = Duration.ZERO;
         streamState = IDLE;
         mediaId = -1;
