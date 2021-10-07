@@ -45,7 +45,7 @@ public class MediaService {
 
     public void sortMedia(int playListId, List<Integer> orderedMediaIds) {
         Playlist playlist = getAllPlayLists().get(playListId);
-        playlist.sortSongs(orderedMediaIds);
+        playlist.sortMedia(orderedMediaIds);
     }
 
     public void createPlayList(String playlistName, List<Integer> mediaIds) {
@@ -55,7 +55,7 @@ public class MediaService {
     }
 
     public void addMediaToPlaylist(int playlistId, int mediaId) {
-        getAllPlayLists().get(playlistId).addSong(getAllMedia().get(mediaId));
+        getAllPlayLists().get(playlistId).addMedia(getAllMedia().get(mediaId));
     }
 
     public Playlist getPlaylistForPlaying(List<Integer> mediaId) {

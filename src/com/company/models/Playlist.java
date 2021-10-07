@@ -38,11 +38,11 @@ public class Playlist implements Serializable {
         this.mediaContent = tracks;
     }
 
-    public void addSong(MediaFile track) {
+    public void addMedia(MediaFile track) {
         mediaContent.add(track);
     }
 
-    public void sortSongs(List<Integer> orderedMediaIds) {
+    public void sortMedia(List<Integer> orderedMediaIds) {
         ArrayList<MediaFile> newMediaContent = new ArrayList<MediaFile>();
         for (Integer orderedMediaId : orderedMediaIds) {
             newMediaContent.add(this.mediaContent.get(orderedMediaId));
