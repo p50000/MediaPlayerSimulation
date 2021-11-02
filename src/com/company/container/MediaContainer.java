@@ -13,6 +13,10 @@ public class MediaContainer {
 
     private MediaContainer() {}
 
+    public void createMedia(MediaFile mediaFile){
+        media.add(mediaFile);
+    }
+
     public MediaContainer(MediaPlayerApplication.key any) throws Exception {
         if(any == null) throw new Exception();
         media = new ArrayList<>();

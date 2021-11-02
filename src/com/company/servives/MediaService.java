@@ -13,6 +13,10 @@ public class MediaService {
     private PlaylistContainer playlistContainer;
     private MediaContainer mediaContainer;
 
+    public void createMedia(MediaFile mediaFile){
+        mediaContainer.createMedia(mediaFile);
+    }
+
     public MediaService(MediaPlayerApplication.key key) throws Exception {
         playlistContainer = new PlaylistContainer(key);
         mediaContainer = new MediaContainer(key);

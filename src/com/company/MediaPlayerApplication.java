@@ -17,6 +17,14 @@ public class MediaPlayerApplication {
 
     MediaService mediaService;
 
+    public Playlist getCurrentPlaylist() {
+        return streamController.getCurrentPlaylist();
+    }
+
+    public void createMedia(MediaFile mediaFile){
+        mediaService.createMedia(mediaFile);
+    }
+
     public static class key {
         private key() {
         }
