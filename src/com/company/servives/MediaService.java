@@ -57,4 +57,8 @@ public class MediaService {
     public Playlist getPlaylistForPlaying(List<Integer> mediaId) {
         return new Playlist("Currently playing", getMediaByIds(mediaId));
     }
+
+    public void createMedia(MediaFile mediaFile) {
+        mediaContainer.createMedia(mediaFile);
+    }
 }

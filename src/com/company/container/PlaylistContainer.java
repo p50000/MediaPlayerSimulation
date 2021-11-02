@@ -10,7 +10,7 @@ public class PlaylistContainer {
     private ArrayList<Playlist> playlists;
 
     public PlaylistContainer(MediaPlayerApplication.key any) throws Exception {
-        if(any == null) {
+        if (any == null) {
             throw new Exception();
         }
         playlists = new ArrayList<>();
@@ -21,7 +21,7 @@ public class PlaylistContainer {
         return playlists;
     }
 
-    public void addPlayList(String playlistName, ArrayList<MediaFile> mediaFiles){
+    public void addPlayList(String playlistName, ArrayList<MediaFile> mediaFiles) {
         Playlist playlist = new Playlist(playlistName, mediaFiles);
         playlists.add(playlist);
         save();

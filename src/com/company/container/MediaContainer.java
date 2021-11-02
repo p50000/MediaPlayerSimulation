@@ -5,14 +5,13 @@ import com.company.models.Audio;
 import com.company.models.MediaFile;
 import com.company.models.Video;
 
-import javax.xml.datatype.DatatypeFactory;
 import java.time.Duration;
 import java.util.ArrayList;
 
 public class MediaContainer {
     private ArrayList<MediaFile> media;
 
-    private MediaContainer(){}
+    private MediaContainer() {}
 
     public MediaContainer(MediaPlayerApplication.key any) throws Exception {
         if(any == null) throw new Exception();
@@ -22,6 +21,10 @@ public class MediaContainer {
 
     public ArrayList<MediaFile> getMedia() {
         return media;
+    }
+
+    public void createMedia(MediaFile mediaFile){
+        media.add(mediaFile);
     }
 
     public void fetchMediaFromSystem(){

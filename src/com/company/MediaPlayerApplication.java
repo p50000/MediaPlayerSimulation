@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MediaPlayerApplication {
 
-    static MediaPlayerApplication instance;
+    private static MediaPlayerApplication instance;
 
     StreamController streamController;
 
@@ -57,6 +57,10 @@ public class MediaPlayerApplication {
 
     public void addMediaToAPlaylist(int playlistId, int mediaId) {
         mediaService.addMediaToPlaylist(playlistId, mediaId);
+    }
+
+    public void createMedia(MediaFile mediaFile){
+        mediaService.createMedia(mediaFile);
     }
 
     public void playMediaFile(int mediaId) {
