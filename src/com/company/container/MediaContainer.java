@@ -27,10 +27,6 @@ public class MediaContainer {
         return media;
     }
 
-    public void createMedia(MediaFile mediaFile){
-        media.add(mediaFile);
-    }
-
     public void fetchMediaFromSystem(){
         //here we load media data from user's system. for now it's simulated by creating media objects
         media.add(new Audio(Duration.ofMinutes(3), "Rick Astley - Never Gonna Give You Up", 0));

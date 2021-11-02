@@ -1,9 +1,10 @@
 package com.company;
 
 import com.company.controller.StreamController;
+import com.company.externalservices.MediaStreamingServiceManager;
 import com.company.models.MediaFile;
 import com.company.models.Playlist;
-import com.company.servives.MediaService;
+import com.company.services.MediaService;
 
 import java.time.Duration;
 import java.util.Collections;
@@ -13,9 +14,11 @@ public class MediaPlayerApplication {
 
     private static MediaPlayerApplication instance;
 
-    StreamController streamController;
+    private StreamController streamController;
 
-    MediaService mediaService;
+    private MediaService mediaService;
+
+    private MediaStreamingServiceManager streamingServiceManager;
 
     public Playlist getCurrentPlaylist() {
         return streamController.getCurrentPlaylist();
@@ -67,8 +70,18 @@ public class MediaPlayerApplication {
         mediaService.addMediaToPlaylist(playlistId, mediaId);
     }
 
-    public void createMedia(MediaFile mediaFile){
+    public void addMediaFromServiceByName(String name) {
+        if (streamingServiceManager == null) {
+            System.out.println("You are not connected to any service");
+            return;
+        }
+        MediaFile mediaFile = streamingServiceManager.getMediaByName(name);
+        if (mediaFile == null) {
+            System.out.println("No such media!");
+            return;
+        }
         mediaService.createMedia(mediaFile);
+        System.out.println("Media item added!");
     }
 
     public void playMediaFile(int mediaId) {
@@ -102,5 +115,19 @@ public class MediaPlayerApplication {
 
     public boolean switchBackward() {
         return streamController.switchBackward();
+    }
+
+    public void playPlayListOfTheDay() {
+        if (streamingServiceManager == null) {
+            System.out.println("You are not connected to any service");
+            return;
+        }
+        Playlist playlistOfTheDay = streamingServiceManager.getPlaylistOfDay();
+        playlistOfTheDay.setName("Playlist of the day");
+        streamController.playMedia(playlistOfTheDay);
+    }
+
+    public void connectToNewService(MediaStreamingServiceManager serviceManager) {
+        this.streamingServiceManager = serviceManager;
     }
 }

@@ -9,6 +9,8 @@ public class Playlist implements Serializable {
     private String playlistName;
     private ArrayList<MediaFile> mediaContent;
 
+    private Integer size;
+
     public String getName() {
         return this.playlistName;
     }
@@ -31,11 +33,14 @@ public class Playlist implements Serializable {
 
     public Playlist() {
         this.mediaContent = new ArrayList<MediaFile>();
+        this.playlistName = ("Unnamed");
+        this.size = 0;
     }
 
     public Playlist(String name, ArrayList<MediaFile> tracks) {
         this.playlistName = name;
         this.mediaContent = tracks;
+        this.size = tracks.size();
     }
 
     public void addMedia(MediaFile track) {
@@ -56,5 +61,13 @@ public class Playlist implements Serializable {
 
     public MediaFile get(int id) {
         return mediaContent.get(id);
+    }
+
+    public Integer getSize() {
+        return size;
+    }
+
+    public void setSize(Integer size) {
+        this.size = size;
     }
 }

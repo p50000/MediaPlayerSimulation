@@ -1,4 +1,4 @@
-package com.company.servives;
+package com.company.services;
 
 import com.company.MediaPlayerApplication;
 import com.company.container.MediaContainer;
@@ -60,9 +60,5 @@ public class MediaService {
 
     public Playlist getPlaylistForPlaying(List<Integer> mediaId) {
         return new Playlist("Currently playing", getMediaByIds(mediaId));
-    }
-
-    public void createMedia(MediaFile mediaFile) {
-        mediaContainer.createMedia(mediaFile);
     }
 }
