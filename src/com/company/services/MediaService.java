@@ -9,7 +9,7 @@ import com.company.models.Playlist;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MediaService {
+public class  MediaService {
     private PlaylistContainer playlistContainer;
     private MediaContainer mediaContainer;
 

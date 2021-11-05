@@ -18,8 +18,7 @@ public class StreamController {
     private int mediaId;
     private Duration currentMoment;
 
-    private StreamController() {
-    }
+    private StreamController() {}
 
     public StreamController(MediaPlayerApplication.key any) {
         if (any == null) return;

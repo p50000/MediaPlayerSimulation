@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class SpotifyManager implements MediaStreamingServiceManager {
-    ArrayList<Audio> songsAtServer;
+    private ArrayList<Audio> songsAtServer;
     private static final int PLAYLIST_SIZE = 5;
 
     public SpotifyManager() {

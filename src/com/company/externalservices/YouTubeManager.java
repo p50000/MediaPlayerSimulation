@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class YouTubeManager implements MediaStreamingServiceManager {
-    ArrayList<Video> videosAtServer;
+    private ArrayList<Video> videosAtServer;
     private static final int PLAYLIST_SIZE = 10;
 
     public YouTubeManager() {
