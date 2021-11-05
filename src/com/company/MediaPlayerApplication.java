@@ -20,14 +20,6 @@ public class MediaPlayerApplication {
 
     private MediaStreamingServiceManager streamingServiceManager;
 
-    public Playlist getCurrentPlaylist() {
-        return streamController.getCurrentPlaylist();
-    }
-
-    public void createMedia(MediaFile mediaFile){
-        mediaService.createMedia(mediaFile);
-    }
-
     public static class key {
         private key() {
         }
@@ -70,6 +62,10 @@ public class MediaPlayerApplication {
         mediaService.addMediaToPlaylist(playlistId, mediaId);
     }
 
+    public void createMedia(MediaFile mediaFile) {
+        mediaService.createMedia(mediaFile);
+    }
+
     public void addMediaFromServiceByName(String name) {
         if (streamingServiceManager == null) {
             System.out.println("You are not connected to any service");
@@ -99,6 +95,10 @@ public class MediaPlayerApplication {
 
     public Duration getCurrentMoment() {
         return streamController.getCurrentMoment();
+    }
+
+    public Playlist getCurrentPlaylist() {
+        return streamController.getCurrentPlaylist();
     }
 
     public boolean forward(Duration time) {

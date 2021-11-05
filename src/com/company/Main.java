@@ -1,5 +1,6 @@
 package com.company;
 
+import com.company.externalservices.YouTubeManager;
 import com.company.models.MediaFile;
 
 import java.time.Duration;
@@ -13,7 +14,6 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Duration duration = Duration.ofSeconds(33);
         MediaPlayerApplication player = MediaPlayerApplication.getInstance();
 
         List<MediaFile> AvailableMusic = player.getAllMedia();
@@ -57,5 +57,13 @@ public class Main {
         System.out.printf("Moment playing: %s\n", formatDuration(player.getCurrentMoment()));
         // Moment playing: 0:00:00
 
+        player.connectToNewService(new YouTubeManager());
+        player.addMediaFromServiceByName("rickroll");
+        AvailableMusic = player.getAllMedia();
+        for (int i = 0; i < AvailableMusic.size(); i++) {
+            MediaFile temp = AvailableMusic.get(i);
+            System.out.printf("Name: %s, duration: %s, id: %d, format: %s\n",
+                    temp.getName(), formatDuration(temp.getDuration()), temp.getId(), temp.getFormat().toString());
+        }
     }
 }

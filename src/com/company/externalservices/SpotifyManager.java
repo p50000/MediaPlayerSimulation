@@ -4,12 +4,24 @@ import com.company.models.Audio;
 import com.company.models.MediaFile;
 import com.company.models.Playlist;
 
+import java.time.Duration;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class SpotifyManager implements MediaStreamingServiceManager {
     ArrayList<Audio> songsAtServer;
     private static final int PLAYLIST_SIZE = 5;
+
+    public SpotifyManager() {
+        songsAtServer = new ArrayList<>();
+        songsAtServer.add(new Audio(Duration.ofMinutes(3), "Rick Astley - Never Gonna Give You Up", 0));
+        songsAtServer.add(new Audio(Duration.ofMinutes(6), "Lana Del Rey - Blue Jeans", 1));
+        songsAtServer.add(new Audio(Duration.ofMinutes(2), "Lizzo - Soulmate", 2));
+        songsAtServer.add(new Audio(Duration.ofMinutes(3), "Pink Floyd - In the flesh", 3));
+        songsAtServer.add(new Audio(Duration.ofMinutes(1), "Metric - Dressed to suppress", 4));
+        songsAtServer.add(new Audio(Duration.ofMinutes(2), "Coldplay - The Scientist", 5));
+        songsAtServer.add(new Audio(Duration.ofMinutes(7), "Baby shark", 6));
+    }
 
     //supposedly makes a request to external server and loads media from it. for now dummy implementation
     private ArrayList<Audio> fetchDataFromServer() {

@@ -14,6 +14,7 @@ public class MediaContainer {
     private MediaContainer() {}
 
     public void createMedia(MediaFile mediaFile){
+        mediaFile.setId(media.size());
         media.add(mediaFile);
     }
 
